@@ -1,0 +1,109 @@
+// Variables
+$nav-footer-bg: #130303;
+$nav-footer-text-color: #F7A673;
+$button-color: #7C3626;
+
+// Mixins
+@mixin mar-pad-default {
+	margin: 0;
+	padding: 0;
+}
+
+@mixin section-max-width {
+	max-width: 1200px;
+	margin: 0 auto 0 auto;
+}
+
+
+//SCSS
+* {
+	box-sizing: border-box;
+}
+
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
+
+}
+
+.button {
+	background-color:$button-color;
+	border-radius:5px;
+	color:#fff;
+	padding:10px 10px 10px 10px;
+	margin: 0 auto 0 auto;
+}
+
+body {
+	font-family: sans-serif;
+	@include mar-pad-default;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+
+}
+
+//Navigation
+nav {
+	background-color: $nav-footer-bg;
+	position: fixed;
+	width: 100%;
+	div.nav-wrap {
+		color: $nav-footer-text-color;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		@include section-max-width;
+		a {
+			align-self: center;
+			&:hover {
+				color: #FFCDBC;
+			}
+		}
+
+		ul {			
+			list-style-type: none;
+			@include mar-pad-default;
+			display: flex;	
+			flex-direction: row;
+			margin-right: 10%;
+
+			li{
+				padding: 20px;
+			}
+		}
+	}
+
+	.nav-logo {
+		margin-left: 10%;
+	}
+
+}
+
+div.nav-displacer {
+	height: 58.33px;
+	display: block;
+}
+
+// Footer
+footer {
+	background-color: $nav-footer-bg;
+	color: $nav-footer-text-color;
+
+	div.footer-wrap {
+		@include section-max-width;
+		text-align: center;
+		padding: 50px;
+	}
+
+}
+
+
+
+//Style for limiting max-width of content sections
+.section-wrap {
+	@include section-max-width;
+	flex: 1;
+	min-height: 100vh;
+}

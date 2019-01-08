@@ -1,0 +1,41 @@
+main div.browse-recipe {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+}
+main div.browse-recipe div.browse-recipe-wrap {
+  background-image: linear-gradient(to bottom right, brown, chocolate);
+  margin: 40px 20% 0 20%;
+  padding: 10px;
+  border-radius: 5px;
+}
+main div.browse-recipe div.browse-recipe-wrap table {
+  margin: 0 auto;
+  width: 500px;
+  border-collapse: collapse;
+}
+main div.browse-recipe div.browse-recipe-wrap table th {
+  font-size: 2em;
+  color: #fff;
+}
+main div.browse-recipe div.browse-recipe-wrap table td:nth-child(even) {
+  background: rgba(204, 204, 204, 0.5);
+}
+main div.browse-recipe div.browse-recipe-wrap table td:nth-child(even):hover {
+  background: white;
+}
+main div.browse-recipe div.browse-recipe-wrap table td:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+main div.browse-recipe div.browse-recipe-wrap table td:nth-child(odd):hover {
+  background: white;
+}
+main div.browse-recipe div.browse-recipe-wrap table th, main div.browse-recipe div.browse-recipe-wrap table td {
+  border-bottom: 2px solid #130303;
+  font-size: 1.5em;
+}
+
+/*# sourceMappingURL=browse-recipe.css.map */

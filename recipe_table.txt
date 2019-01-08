@@ -1,0 +1,9 @@
+recipe_id INT
+recipe_name varchar 
+water_temp int
+bean_amt int
+grind_setting varchar
+total water amount int
+pourpoints water amount mediumtext
+pour points time mediumtext
+notes

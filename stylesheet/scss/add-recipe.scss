@@ -1,0 +1,24 @@
+main {
+	.add-recipe {
+		max-width: 1200px;
+		text-align: center;
+		margin: 0 20% 0 20%;
+		label {
+			display: inline-block;
+			margin-top: 10px;
+		}
+		.button-wrap {
+			margin: 20px 0 20px 0;
+			span {
+
+				cursor: pointer;
+				padding: 5px 10px 5px 10px;
+
+				.button {
+					margin-top: 50px;
+				}
+			}
+		}
+
+	}
+}

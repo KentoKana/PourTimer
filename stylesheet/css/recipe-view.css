@@ -1,0 +1,35 @@
+main {
+  font-size: 20px;
+}
+main div.recipe-view {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 40px 10% 40px 10%;
+  color: white;
+}
+main div.recipe-view div.recipe-col h1 {
+  margin: 0;
+}
+main div.recipe-view div.recipe-col div.recipe-col-wrap {
+  background-image: linear-gradient(to bottom right, brown, chocolate);
+  background-color: #7C3626;
+  padding: 30px;
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+}
+main div.recipe-view div.recipe-col div.recipe-col-wrap td:first-child {
+  font-weight: bold;
+}
+main div.recipe-view div.timer-col-wrap {
+  text-align: center;
+  font-size: 30px;
+  background-color: #0263D3;
+  padding: 30px;
+  height: 100%;
+  border-radius: 0 5px 5px 0;
+  width: 400px;
+}
+
+/*# sourceMappingURL=recipe-view.css.map */

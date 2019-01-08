@@ -1,0 +1,49 @@
+$recipe-col-bg: #7C3626;
+$timer-col-bg: #0263D3;
+@mixin col-wrap {
+	padding: 30px;
+	height: 100%;
+
+}
+
+main {
+	font-size: 20px;
+	div.recipe-view {
+		max-width: 1200px;
+		display:flex;
+		flex-direction: row;
+		justify-content: center;
+		margin: 40px 10% 40px 10%;
+		color: white;
+
+		div.recipe-col {
+			h1 {
+				margin: 0;
+			}
+
+			div.recipe-col-wrap {
+				background-image: linear-gradient(to bottom right, brown, chocolate);
+				background-color: $recipe-col-bg;
+				@include col-wrap;
+				border-radius: 5px 0 0 5px;
+				td {
+					&:first-child {
+						font-weight: bold;
+					}
+				}
+
+			}
+
+		}
+
+		div.timer-col-wrap {
+			text-align: center;
+			font-size: 30px;
+			background-color: $timer-col-bg;
+			@include col-wrap;
+			border-radius: 0 5px 5px 0;
+			width: 400px;
+		}
+
+	}
+}
