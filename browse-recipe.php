@@ -23,7 +23,7 @@ include('inc/database.php');
 				<!-- Table to display recipe list -->
 				<table>
 					<tr>
-						<th>Recipe Name</th>
+						<th><h1>Recipe Name</h1></th>
 					</tr>
 						<?php
 

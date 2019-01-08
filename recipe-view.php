@@ -36,7 +36,7 @@
 						if($conn_status = true){
 							$counter = 1;
 							foreach ($conn->query($sql) as $row) {
-								print "<h1>" . $row[recipe_name] . "</h1>" . "b<r>";
+								print "<h1>" . $row[recipe_name] . "</h1>" . "<br>";
 								print "<tr><td>Water Temp: </td>" . "<td> $row[water_temp] </td></tr>";
 								print "<tr><td>Bean Amt: </td>" . "<td> $row[bean_amt] </td></tr>";
 								print "<tr><td>Grind Setting: </td>" . "<td> $row[grind_setting] </td></tr>";
