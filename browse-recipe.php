@@ -37,9 +37,9 @@ include('inc/database.php');
 						if($conn_status = true){
 							foreach ($conn->query($sql) as $row) {
 								print
-								"<tr><td>" . 
-								"<a href='recipe-view.php?recipeId=$row[recipe_id]'>" . 
-								$row[recipe_name] . 
+								"<tr><td>" .
+								"<a href='recipe-view.php?recipeId=$row[recipe_id]'>" .
+								$row['recipe_name'] . 
 								"</a>" .
 								"</td></tr>";
 							}
