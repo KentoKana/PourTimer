@@ -57,27 +57,41 @@ window.onload = function () {
 		return regEx.test(userInput);
 	}
 
-	var userInput = document.getElementsByClassName('userInput');
-	var valMessage = document.getElementsByClassName('val-message');
+	const userInput = document.getElementsByClassName('userInput');
+	const valMessage = document.getElementsByClassName('val-message');
 
-	
+	var formValid = false;
 	formHandler[0].onsubmit = function() {
-		if(true){
+
+		if(formValid === false){
 			for(i=0;i<userInput.length;i++){
-				if(userInput[i].value === null || userInput[i].value === ""){
-					valMessage[i].innerHTML = "*You cannot leave this field blank." 
+				if(userInput[i].value === "" || userInput[i].value === null){
+					valMessage[i].innerHTML = "*You cannot leave this field blank.";
+					formValid = false;
 				} else {
-					valMessage[i].innerHTML = ""; 
+					valMessage[i].innerHTML = "";
+					formValid = true;
 				}
 			}
-
-			//water temp validation
-			if(isNaN($('#water-temp').val())){
-				$('#water-temp-validation').html("*Please enter a valid water temperature.")
-			} 
-
-			return false;
+			
+			return formValid;
 		} 
+
+		// if($('.userInput').val() === "" || $('.userInput').val === null){
+		// 	$('.val-message').html("*You cannot leave this field blank."); 
+		// 	return false;
+		// } else {
+		// 	$('.val-message').html(""); 
+
+		// }
+		// if($('#recipe-name').val() === "" || $('#recipe-name').val() === null ){
+		// 	$('#recipe-name-validation').html("*You have to name your recipe."); 
+		// 	return false;
+		// }
+		// if(isNaN($('water-temp').val())){
+		// 	$('#water-temp-validation').html("*You ")
+		// }
+
 	}
 
 }
