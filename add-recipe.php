@@ -20,29 +20,38 @@
 				<div>
 					<label for="recipe-name">Recipe Name:</label>
 				</div>
-				<input type="text" id="recipe-name" name="recipe-name">
-
+				<input type="text" id="recipe-name" class="userInput" name="recipe-name">
+				<div class="val-message"id="recipe-name-validation"></div>
 				<div>
 					<label for="water-temp">Water Temperature:</label>
 				</div>
-				<input type="text" id="water-temp" name="water-temp">
+				<input type="text" id="water-temp" name="water-temp" class="userInput">
+				<div class="val-message" id="water-temp-validation"></div>
+
 				<div>
 					<label for="bean-amt">Bean Amount:</label>
 				</div>
-				<input type="text" id="bean-amt" name="bean-amt">
+				<input type="text" id="bean-amt" class="userInput" name="bean-amt">
+				<div class="val-message"id="bean-amt-validation"></div>
+
 				<div>
 					<label for="grind-setting">Grind Setting:</label>
 				</div>
-				<select id="grind-setting" name="grind-setting">
+				<select id="grind-setting" class="userInput"  name="grind-setting">
 					<option value = "-1">Select Grind Setting:</option>
 					<option value="Turkish Coffee (Extra-Fine)">Turkish Coffee (Extra-Fine)</option>
 					<option value="Espresso (Fine)">Espresso (Fine)</option>
 					<option value="Filter (Medium)">Filter (Medium)</option>
 					<option value="French Press (Coarse)">French Press (Coarse)</option>
-				</select>				<div>
+				</select>				
+				<div class="val-message"id="grind-setting-validation"></div>
+
+				<div>
 					<label for="total-water-amt">Total Water Amount:</label>
 				</div>
-				<input type="text" id="total-water-amt" name="total-water-amt">	
+				<input type="text" class="userInput" id="total-water-amt" name="total-water-amt">
+				<div class="val-message" id="tota-water-amt-validation"></div>
+
 
 				<!-- Pour Points -->
 				<div>

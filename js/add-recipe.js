@@ -1,5 +1,6 @@
 window.onload = function () {
 
+	//Adding/removing additional pour-points
 	//Variables
 
 	//Counter for keeping track of how many pour points were generated.
@@ -46,5 +47,37 @@ window.onload = function () {
 		return counter;
 	}
 
+
+	//form validation
+	const formHandler = document.forms;
+
+	function validate(input, regex){
+		var regEx = regex;
+		var userInput = $(input).val();
+		return regEx.test(userInput);
+	}
+
+	var userInput = document.getElementsByClassName('userInput');
+	var valMessage = document.getElementsByClassName('val-message');
+
+	
+	formHandler[0].onsubmit = function() {
+		if(true){
+			for(i=0;i<userInput.length;i++){
+				if(userInput[i].value === null || userInput[i].value === ""){
+					valMessage[i].innerHTML = "*You cannot leave this field blank." 
+				} else {
+					valMessage[i].innerHTML = ""; 
+				}
+			}
+
+			//water temp validation
+			if(isNaN($('#water-temp').val())){
+				$('#water-temp-validation').html("*Please enter a valid water temperature.")
+			} 
+
+			return false;
+		} 
+	}
 
 }
