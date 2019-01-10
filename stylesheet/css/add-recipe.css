@@ -10,15 +10,22 @@ main .add-recipe label {
 main .add-recipe .button-wrap {
   margin: 20px 0 20px 0;
 }
-main .add-recipe .button-wrap span {
-  cursor: pointer;
-  padding: 5px 10px 5px 10px;
-}
-main .add-recipe .button-wrap span .button {
-  margin-top: 50px;
+main .add-recipe .button-wrap button.button {
+  width: 100px;
+  height: 30px;
+  padding: 0;
 }
 main .add-recipe .val-message {
   color: red;
+}
+main .add-recipe #pourGroupTableDiv {
+  width: 100%;
+}
+main .add-recipe #pourGroupTableDiv table {
+  margin: 0 auto;
+}
+main .add-recipe #pourGroupTableDiv table tbody td {
+  padding: 0;
 }
 
 /*# sourceMappingURL=add-recipe.css.map */

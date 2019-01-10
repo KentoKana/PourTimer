@@ -57,22 +57,24 @@
 				<div>
 					<label>Pour Points:</label>
 					<div class="button-wrap">
-						<span class="button" id="addPourPoint">+</span>
-						<span class="button" id="removePourPoint">-</span>
+						<button type="button" class="button" id="addPourPoint">Add</button>
+						<button type="button" class="button" id="removePourPoint">Remove</button>
 					</div>
 				</div>
-				<div id="pour-point-div">
+				<div id="pourGroupTableDiv" class="pourGroup">
+					<table>
+						<tbody id="pour-point-div">
+							<th></th>
+							<th><label for="pour-point-time">Time:</label></th>
+							<th><label for="pour-point-amt">Water Amount:</label></th>
+							<tr>
+								<td>1.</td>
+								<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]"><div class='val-message'></div></td>
+								<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]"><div class='val-message'></div></td>
+							</tr>
+						</tbody>
 
-					1.
-					<label for="pour-point-time">Time:</label>
-					<input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]">
-					<div class="val-message" id="pour-point-time-validation"></div>
-
-					<label for="pour-point-amt">Water Amount:</label>
-					<input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]">
-					<div class="val-message" id="pour-point-amt-validation"></div>
-
-
+					</table>
 				</div>
 
 				<div>

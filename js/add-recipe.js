@@ -8,6 +8,8 @@ window.onload = function () {
 	const addPourPointBtn = document.getElementById("addPourPoint");
 	const removePourPointBtn = document.getElementById("removePourPoint")
 	const pourPointDiv = document.getElementById("pour-point-div");
+	const pourPoint = document.getElementsByClassName('pourGroup');
+
 
 	//Event Listeners
 	addPourPointBtn.addEventListener('click', addPourPointField);
@@ -20,20 +22,23 @@ window.onload = function () {
 		let timeField = "<input type='text' class='userInput' id='pour-point-time" + (counter +1) + "' name='pour-point-time[]'><div class='val-message'></div>";
 		let amtField = "<input type='text' class='userInput int'id='pour-point-amt" + (counter + 1) + "' name='pour-point-amt[]'><div class='val-message'></div>";
 
-		//create labels for the fields
-		let timeLbl = '<label for="pour-point-time' + (counter + 1) + '"> Time: </label> ';
-		let amtLbl = '<label for="pour-point-amt' + (counter + 1) + '"> Water Amount: </label> ';
+		//create labels for the fields, with unique id.
+		// let timeLbl = '<label for="pour-point-time' + (counter + 1) + '"> Time: </label> ';
+		// let amtLbl = '<div><label for="pour-point-amt' + (counter + 1) + '"> Water Amount: </label> ';
 
-
+		//Adds field to the table in add-recipe.php.
 		//Prepends 'list number' in front of the forms.
-		$('#pour-point-div').append("<div class='pourGroup'>" + (counter + 1) + ". " + timeLbl + timeField + " " + amtLbl + amtField + "<br>" + "</div>");
+		$('#pour-point-div').append(
+			"<tr class='pourGroup'><td>" 
+			+ (counter + 1) 
+			+ ". </td><td>" 
+			+ timeField 
+			+ "</td><td> " 
+			+ amtField 
+			+ "</td></tr>");
 
 		return counter += 1;
 	}
-
-	const pourPoint = document.getElementsByClassName('pourGroup');
-	console.log(pourPoint);
-
 
 	function removePourPointField() {
 		console.log(pourPoint);
@@ -48,7 +53,7 @@ window.onload = function () {
 	}
 
 
-	//form validation
+	//Form Validation
 	const formHandler = document.forms;
 	const userInput = document.getElementsByClassName('userInput');
 
