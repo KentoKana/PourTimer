@@ -33,6 +33,12 @@ a {
 	color:#fff;
 	padding:10px 10px 10px 10px;
 	margin: 0 auto 0 auto;
+	cursor: pointer;
+	border: none;
+	&:hover {
+		background-color: #F7A673;
+	}
+
 }
 
 body {

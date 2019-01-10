@@ -1,7 +1,10 @@
+main .required {
+  color: red;
+}
 main .add-recipe {
   max-width: 1200px;
   text-align: center;
-  margin: 0 20% 0 20%;
+  margin: 0 20% 60px 20%;
 }
 main .add-recipe label {
   display: inline-block;
@@ -26,6 +29,13 @@ main .add-recipe #pourGroupTableDiv table {
 }
 main .add-recipe #pourGroupTableDiv table tbody td {
   padding: 0;
+}
+main .add-recipe textarea {
+  width: 300px;
+  height: 200px;
+}
+main .add-recipe #submitButton {
+  display: block;
 }
 
 /*# sourceMappingURL=add-recipe.css.map */
