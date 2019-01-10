@@ -21,7 +21,7 @@
 				<div>
 					<label for="recipe-name"><span class="required">*</span>Recipe Name:</label>
 				</div>
-				<input type="text" id="recipe-name" class="userInput" name="recipe-name">
+				<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee">
 				<div class="val-message"id="recipe-name-validation"></div>
 				<div>
 					<label for="water-temp"><span class="required">*</span>Water Temperature:</label>
@@ -70,7 +70,7 @@
 							<th><label for="pour-point-amt"><span class="required">*</span>Water Amount:</label></th>
 							<tr>
 								<td>1.</td>
-								<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]"><div class='val-message'></div></td>
+								<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]" placeholder='MM:SS'><div class='val-message'></div></td>
 								<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]"><div class='val-message'></div></td>
 							</tr>
 						</tbody>
@@ -79,9 +79,9 @@
 				</div>
 
 				<div>
-					<label for="notes">Notes:</label>
+					<label for="notes">Notes:<span class='optional'>(optional)</span></label>
 				</div>
-				<textarea id='notes' name="notes"></textarea>
+				<textarea id='notes' name="notes" placeholder="eg. Stir the grounds during bloom. Pour clockwise. Etc."></textarea>
 				<button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
 
 			</form>

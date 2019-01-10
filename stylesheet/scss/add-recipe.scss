@@ -4,6 +4,14 @@ main {
 		color: red;
 	}
 
+	.optional {
+		color: gray;
+	}
+
+	input {
+		text-align: center;
+	}
+
 	.add-recipe {
 		max-width: 1200px;
 		text-align: center;
@@ -40,12 +48,11 @@ main {
 
 			}
 		}
-
 		textarea {
 			width: 300px;
 			height: 200px;
+			resize: none;
 		}
-
 		#submitButton{
 			display: block;
 		}

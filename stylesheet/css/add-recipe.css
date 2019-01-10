@@ -1,6 +1,12 @@
 main .required {
   color: red;
 }
+main .optional {
+  color: gray;
+}
+main input {
+  text-align: center;
+}
 main .add-recipe {
   max-width: 1200px;
   text-align: center;
@@ -33,6 +39,7 @@ main .add-recipe #pourGroupTableDiv table tbody td {
 main .add-recipe textarea {
   width: 300px;
   height: 200px;
+  resize: none;
 }
 main .add-recipe #submitButton {
   display: block;

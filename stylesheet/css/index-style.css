@@ -14,9 +14,6 @@ main .home h1 {
 main .home a {
   margin-top: 20px;
 }
-main .home a:hover {
-  background-color: #F7A673;
-}
 
 p {
   max-width: 1200px;
