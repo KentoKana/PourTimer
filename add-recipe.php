@@ -29,57 +29,77 @@
 			header("Location: login.php");
 		}?></span>
 			<h1>Add Recipe</h1>
+			<p><em>Please note: Any field marked with "<span class="required">*</span>" are required.</em></p>
 			<form action="add-recipe.php" method="POST">
 				<div>
-					<label for="recipe-name">Recipe Name:</label>
+					<label for="recipe-name"><span class="required">*</span>Recipe Name:</label>
 				</div>
-				<input type="text" id="recipe-name" name="recipe-name">
+				<input type="text" id="recipe-name" class="userInput" name="recipe-name">
+				<div class="val-message"id="recipe-name-validation"></div>
+				<div>
+					<label for="water-temp"><span class="required">*</span>Water Temperature:</label>
+				</div>
+				<input type="text" id="water-temp" name="water-temp" class="userInput int">
+				<div class="val-message" id="water-temp-validation"></div>
 
 				<div>
-					<label for="water-temp">Water Temperature:</label>
+					<label for="bean-amt"><span class="required">*</span>Bean Amount:</label>
 				</div>
-				<input type="text" id="water-temp" name="water-temp">
+				<input type="text" id="bean-amt" class="userInput int" name="bean-amt">
+				<div class="val-message" id="bean-amt-validation"></div>
+
 				<div>
-					<label for="bean-amt">Bean Amount:</label>
+					<label for="grind-setting"><span class="required">*</span>Grind Setting:</label>
 				</div>
-				<input type="text" id="bean-amt" name="bean-amt">
-				<div>
-					<label for="grind-setting">Grind Setting:</label>
-				</div>
-				<select id="grind-setting" name="grind-setting">
-					<option value = "-1">Select Grind Setting:</option>
+				<select id="grind-setting" class="userInput"  name="grind-setting">
+					<option value="-1" selected disabled>Select Grind Setting:</option>
 					<option value="Turkish Coffee (Extra-Fine)">Turkish Coffee (Extra-Fine)</option>
 					<option value="Espresso (Fine)">Espresso (Fine)</option>
 					<option value="Filter (Medium)">Filter (Medium)</option>
 					<option value="French Press (Coarse)">French Press (Coarse)</option>
-				</select>				<div>
-					<label for="total-water-amt">Total Water Amount:</label>
+				</select>				
+				<div class="val-message" id="grind-setting-validation"></div>
+
+				<div>
+					<label for="total-water-amt"><span class="required">*</span>Total Water Amount:</label>
 				</div>
+<<<<<<< HEAD
 				<input type="text" id="total-water-amt" name="total-water-amt">
+=======
+				<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt">
+				<div class="val-message" id="total-water-amt-validation"></div>
+
+>>>>>>> 4eaa974fa9349c17f1ccfd59ffecad88ee35f12a
 
 				<!-- Pour Points -->
 				<div>
 					<label>Pour Points:</label>
 					<div class="button-wrap">
-						<span class="button" id="addPourPoint">+</span>
-						<span class="button" id="removePourPoint">-</span>
+						<button type="button" class="button" id="addPourPoint">Add</button>
+						<button type="button" class="button" id="removePourPoint">Remove</button>
 					</div>
 				</div>
-				<div id="pour-point-div">
+				<div id="pourGroupTableDiv" class="pourGroup">
+					<table>
+						<tbody id="pour-point-div">
+							<th></th>
+							<th><label for="pour-point-time"><span class="required">*</span>Time:</label></th>
+							<th><label for="pour-point-amt"><span class="required">*</span>Water Amount:</label></th>
+							<tr>
+								<td>1.</td>
+								<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]"><div class='val-message'></div></td>
+								<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]"><div class='val-message'></div></td>
+							</tr>
+						</tbody>
 
-					1.
-					<label for="pour-point-time">Time:</label>
-					<input type="text" id="pour-point-time" name="pour-point-time[]">
-					<label for="pour-point-amt">Water Amount:</label>
-					<input type="text" id="pour-point-amt" name="pour-point-amt[]">
-
+					</table>
 				</div>
 
 				<div>
 					<label for="notes">Notes:</label>
 				</div>
 				<textarea id='notes' name="notes"></textarea>
-				<input type="submit" name="submit_button">
+				<button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
 
 			</form>
 
