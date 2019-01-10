@@ -70,10 +70,7 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
-
-
 	</main>
 
 	<!-- Footer -->

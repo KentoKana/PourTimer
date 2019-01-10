@@ -17,8 +17,8 @@ window.onload = function () {
 	function addPourPointField() {
 
 		//create fields
-		let timeField = "<input type='text' id='pour-point-time" + (counter +1) + "' name='pour-point-time[]'>";
-		let amtField = "<input type='text' id='pour-point-amt" + (counter + 1) + "' name='pour-point-amt[]'>";
+		let timeField = "<input type='text' class='userInput' id='pour-point-time" + (counter +1) + "' name='pour-point-time[]'><div class='val-message'></div>";
+		let amtField = "<input type='text' class='userInput int'id='pour-point-amt" + (counter + 1) + "' name='pour-point-amt[]'><div class='val-message'></div>";
 
 		//create labels for the fields
 		let timeLbl = '<label for="pour-point-time' + (counter + 1) + '"> Time: </label> ';
@@ -50,48 +50,35 @@ window.onload = function () {
 
 	//form validation
 	const formHandler = document.forms;
-
-	function validate(input, regex){
-		var regEx = regex;
-		var userInput = $(input).val();
-		return regEx.test(userInput);
-	}
-
 	const userInput = document.getElementsByClassName('userInput');
-	const valMessage = document.getElementsByClassName('val-message');
 
-	var formValid = false;
+	let formValidity = false;
 	formHandler[0].onsubmit = function() {
-
-		if(formValid === false){
-			for(i=0;i<userInput.length;i++){
-				if(userInput[i].value === "" || userInput[i].value === null){
-					valMessage[i].innerHTML = "*You cannot leave this field blank.";
-					formValid = false;
-				} else {
-					valMessage[i].innerHTML = "";
-					formValid = true;
-				}
+		for(i=0;i<userInput.length;i++){
+			if($('.userInput').eq(i).val() === "" || $('.userInput').eq(i).val() === null){
+				$('.userInput').eq(i).addClass('empty');
+			} else {
+				$('.userInput').eq(i).removeClass('empty');
 			}
-			
-			return formValid;
-		} 
+			if($('.userInput').eq(i).hasClass('empty')){
+				$('.val-message').eq(i).html('*This field is required.')
+				formValidity = false;
+			} else if($('.userInput').eq(i).hasClass('int') && isNaN($('.userInput').eq(i).val())){
+				$('.userInput').eq(i).addClass('invalidField');
+				$('.val-message').eq(i).html('*Please enter a valid number.');
+				formValidity = false;
+			} 
+			else { 
+				$('.userInput').eq(i).removeClass('invalidField');
+				$('.val-message').eq(i).html('');
+			}
 
-		// if($('.userInput').val() === "" || $('.userInput').val === null){
-		// 	$('.val-message').html("*You cannot leave this field blank."); 
-		// 	return false;
-		// } else {
-		// 	$('.val-message').html(""); 
-
-		// }
-		// if($('#recipe-name').val() === "" || $('#recipe-name').val() === null ){
-		// 	$('#recipe-name-validation').html("*You have to name your recipe."); 
-		// 	return false;
-		// }
-		// if(isNaN($('water-temp').val())){
-		// 	$('#water-temp-validation').html("*You ")
-		// }
-
+			if(!$('.userInput').hasClass('invalidField') && !$('.userInput').hasClass('empty')){
+				formValidity = true;
+			}
+		}
+		console.log(formValidity);
+		return formValidity;
 	}
 
 }

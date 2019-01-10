@@ -25,32 +25,32 @@
 				<div>
 					<label for="water-temp">Water Temperature:</label>
 				</div>
-				<input type="text" id="water-temp" name="water-temp" class="userInput">
+				<input type="text" id="water-temp" name="water-temp" class="userInput int">
 				<div class="val-message" id="water-temp-validation"></div>
 
 				<div>
 					<label for="bean-amt">Bean Amount:</label>
 				</div>
-				<input type="text" id="bean-amt" class="userInput" name="bean-amt">
-				<div class="val-message"id="bean-amt-validation"></div>
+				<input type="text" id="bean-amt" class="userInput int" name="bean-amt">
+				<div class="val-message" id="bean-amt-validation"></div>
 
 				<div>
 					<label for="grind-setting">Grind Setting:</label>
 				</div>
 				<select id="grind-setting" class="userInput"  name="grind-setting">
-					<option value = "-1">Select Grind Setting:</option>
+					<option value="-1" selected disabled>Select Grind Setting:</option>
 					<option value="Turkish Coffee (Extra-Fine)">Turkish Coffee (Extra-Fine)</option>
 					<option value="Espresso (Fine)">Espresso (Fine)</option>
 					<option value="Filter (Medium)">Filter (Medium)</option>
 					<option value="French Press (Coarse)">French Press (Coarse)</option>
 				</select>				
-				<div class="val-message"id="grind-setting-validation"></div>
+				<div class="val-message" id="grind-setting-validation"></div>
 
 				<div>
 					<label for="total-water-amt">Total Water Amount:</label>
 				</div>
-				<input type="text" class="userInput" id="total-water-amt" name="total-water-amt">
-				<div class="val-message" id="tota-water-amt-validation"></div>
+				<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt">
+				<div class="val-message" id="total-water-amt-validation"></div>
 
 
 				<!-- Pour Points -->
@@ -65,9 +65,13 @@
 
 					1.
 					<label for="pour-point-time">Time:</label>
-					<input type="text" id="pour-point-time" name="pour-point-time[]">
+					<input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]">
+					<div class="val-message" id="pour-point-time-validation"></div>
+
 					<label for="pour-point-amt">Water Amount:</label>
-					<input type="text" id="pour-point-amt" name="pour-point-amt[]">
+					<input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]">
+					<div class="val-message" id="pour-point-amt-validation"></div>
+
 
 				</div>
 

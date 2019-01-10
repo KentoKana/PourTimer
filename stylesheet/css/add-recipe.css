@@ -17,5 +17,8 @@ main .add-recipe .button-wrap span {
 main .add-recipe .button-wrap span .button {
   margin-top: 50px;
 }
+main .add-recipe .val-message {
+  color: red;
+}
 
 /*# sourceMappingURL=add-recipe.css.map */
