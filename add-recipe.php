@@ -15,6 +15,19 @@
 	<!-- Main -->
 	<main>
 		<div class='section-wrap add-recipe'>
+			<span><?php
+
+			if(isset($_REQUEST['logout'])){
+					session_destroy();
+					header("Location: login.php?logout");
+			}
+			if(isset($_SESSION['username'])){
+				echo "Hello, " . $_SESSION['username'];
+			?>
+			<a href="add-recipe.php?logout">logout</a>
+		<?php } else {
+			header("Location: login.php");
+		}?></span>
 			<h1>Add Recipe</h1>
 			<p><em>Please note: Any field marked with "<span class="required">*</span>" are required.</em></p>
 			<form action="add-recipe.php" method="POST">
@@ -44,7 +57,7 @@
 					<option value="Espresso (Fine)">Espresso (Fine)</option>
 					<option value="Filter (Medium)">Filter (Medium)</option>
 					<option value="French Press (Coarse)">French Press (Coarse)</option>
-				</select>				
+				</select>
 				<div class="val-message" id="grind-setting-validation"></div>
 
 				<div>
@@ -146,4 +159,3 @@
 <script src="js/add-recipe.js"></script>
 <script src="js/jquery.js"></script>
 </html>
-

@@ -41,12 +41,12 @@
 								print "<tr><td>Bean Amt: </td>" . "<td> $row[bean_amt] </td></tr>";
 								print "<tr><td>Grind Setting: </td>" . "<td> $row[grind_setting] </td></tr>";
 								print "<tr><td>Total Water Amt: </td>" . "<td> $row[total_water_amt] </td></tr>";
-								echo 
-								"<tr><td>Pour Points: </td>" . 
+								echo
+								"<tr><td>Pour Points: </td>" .
 
 								//prepends list number for each pour-point.
-								"<td><ol><li>" . str_replace(", ", "<li>", $row[pour_points_time] . "</li>") . "</li></ol></td>" . 
-								"<td>" . str_replace(", ", "<br>", $row[pour_points_water_amt]) . "</td>" . 
+								"<td><ol><li>" . str_replace(", ", "<li>", $row['pour_points_time'] . "</li>") . "</li></ol></td>" .
+								"<td>" . str_replace(", ", "<br>", $row['pour_points_water_amt']) . "</td>" .
 								"</tr>";
 								print "<tr><td>Notes: </td>" . "<td colspan='2'> $row[notes] </td></tr>";
 
@@ -54,9 +54,6 @@
 							}
 
 						}
-
-						$newstr = str_replace($order, $replace, $str);
-
 						?>
 					</table>
 				</div>

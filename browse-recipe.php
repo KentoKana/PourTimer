@@ -39,7 +39,7 @@ include('inc/database.php');
 								print
 								"<tr><td>" .
 								"<a href='recipe-view.php?recipeId=$row[recipe_id]'>" .
-								$row['recipe_name'] . 
+								$row['recipe_name'] .
 								"</a>" .
 								"</td></tr>";
 							}
