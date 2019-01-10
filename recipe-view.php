@@ -36,17 +36,17 @@
 						if($conn_status = true){
 							$counter = 1;
 							foreach ($conn->query($sql) as $row) {
-								print "<h1>" . $row[recipe_name] . "</h1>" . "b<r>";
+								print "<h1>" . $row['recipe_name'] . "</h1>" . "<br>";
 								print "<tr><td>Water Temp: </td>" . "<td> $row[water_temp] </td></tr>";
 								print "<tr><td>Bean Amt: </td>" . "<td> $row[bean_amt] </td></tr>";
 								print "<tr><td>Grind Setting: </td>" . "<td> $row[grind_setting] </td></tr>";
 								print "<tr><td>Total Water Amt: </td>" . "<td> $row[total_water_amt] </td></tr>";
-								echo 
-								"<tr><td>Pour Points: </td>" . 
+								echo
+								"<tr><td>Pour Points: </td>" .
 
 								//prepends list number for each pour-point.
-								"<td><ol><li>" . str_replace(", ", "<li>", $row[pour_points_time] . "</li>") . "</li></ol></td>" . 
-								"<td>" . str_replace(", ", "<br>", $row[pour_points_water_amt]) . "</td>" . 
+								"<td><ol><li>" . str_replace(", ", "<li>", $row['pour_points_time'] . "</li>") . "</li></ol></td>" .
+								"<td>" . str_replace(", ", "<br>", $row['pour_points_water_amt']) . "</td>" .
 								"</tr>";
 								print "<tr><td>Notes: </td>" . "<td colspan='2'> $row[notes] </td></tr>";
 
@@ -54,9 +54,6 @@
 							}
 
 						}
-
-						$newstr = str_replace($order, $replace, $str);
-
 						?>
 					</table>
 				</div>

@@ -15,6 +15,19 @@
 	<!-- Main -->
 	<main>
 		<div class='section-wrap add-recipe'>
+			<span><?php
+
+			if(isset($_REQUEST['logout'])){
+					session_destroy();
+					header("Location: login.php?logout");
+			}
+			if(isset($_SESSION['username'])){
+				echo "Hello, " . $_SESSION['username'];
+			?>
+			<a href="add-recipe.php?logout">logout</a>
+		<?php } else {
+			header("Location: login.php");
+		}?></span>
 			<h1>Add Recipe</h1>
 			<form action="add-recipe.php" method="POST">
 				<div>
@@ -42,7 +55,7 @@
 				</select>				<div>
 					<label for="total-water-amt">Total Water Amount:</label>
 				</div>
-				<input type="text" id="total-water-amt" name="total-water-amt">	
+				<input type="text" id="total-water-amt" name="total-water-amt">
 
 				<!-- Pour Points -->
 				<div>
@@ -130,4 +143,3 @@
 <script src="js/add-recipe.js"></script>
 <script src="js/jquery.js"></script>
 </html>
-
