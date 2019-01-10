@@ -57,19 +57,15 @@
 					<option value="Espresso (Fine)">Espresso (Fine)</option>
 					<option value="Filter (Medium)">Filter (Medium)</option>
 					<option value="French Press (Coarse)">French Press (Coarse)</option>
-				</select>				
+				</select>
 				<div class="val-message" id="grind-setting-validation"></div>
 
 				<div>
 					<label for="total-water-amt"><span class="required">*</span>Total Water Amount:</label>
 				</div>
-<<<<<<< HEAD
-				<input type="text" id="total-water-amt" name="total-water-amt">
-=======
 				<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt">
 				<div class="val-message" id="total-water-amt-validation"></div>
 
->>>>>>> 4eaa974fa9349c17f1ccfd59ffecad88ee35f12a
 
 				<!-- Pour Points -->
 				<div>
