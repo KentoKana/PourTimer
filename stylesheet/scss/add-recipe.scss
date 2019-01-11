@@ -1,5 +1,4 @@
 main {
-
 	.required {
 		color: red;
 	}
@@ -7,11 +6,9 @@ main {
 	.optional {
 		color: gray;
 	}
-
 	input {
 		text-align: center;
 	}
-
 	.add-recipe {
 		max-width: 1200px;
 		text-align: center;
@@ -27,14 +24,12 @@ main {
 					width: 100px;
 					height: 30px;
 					padding: 0;
-
 				}
 			}
 		}					
 		.val-message {
 			color: red;
 		}
-
 		#pourGroupTableDiv {
 			width: 100%;
 			table{
@@ -43,9 +38,7 @@ main {
 					td{
 						padding: 0;
 					}
-
 				}
-
 			}
 		}
 		textarea {
@@ -56,6 +49,5 @@ main {
 		#submitButton{
 			display: block;
 		}
-
 	}
 }

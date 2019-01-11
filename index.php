@@ -13,11 +13,28 @@
 	<!-- Main -->
 	<main>
 		<div class='section-wrap home'>
-			<h1>Welcome to Pour-Timer!</h1>
+			<h1><?php
+
+			if(isset($_REQUEST['logout'])){
+				session_destroy();
+				header("Location: login.php?logout");
+			}
+			if(isset($_SESSION['username'])){
+				echo "Welcome to Pour-Timer, " . $_SESSION['username'] . "!";
+				?>	
+			</h1>
+
 			<p>
 				Let's get some coffee brewing!
 			</p>
+
 			<a href="browse-recipe.php" class="button">Browse Recipes</a>
+
+			<div>
+				<a href="index.php?logout">logout</a>
+			<?php } else {
+				header("Location: login.php");
+			}?></div>
 		</div>
 <!-- 		<P>
 			Bacon ipsum dolor amet corned beef boudin venison buffalo biltong pancetta. Jowl picanha cupim venison ball tip, buffalo shoulder spare ribs pastrami tenderloin pork chop. Leberkas drumstick pancetta fatback pork belly. Salami capicola frankfurter, doner jerky bacon shank.

@@ -46,9 +46,7 @@ window.onload = function () {
 			//removes the last child of the pourPointDiv.
 			pourPointDiv.removeChild(pourPoint[pourPoint.length-1]);
 			counter -= 1;			
-		} else {
-			console.log("reached the end of list");
-		}
+		} 
 		return counter;
 	}
 
