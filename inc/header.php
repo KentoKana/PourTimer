@@ -11,4 +11,3 @@
 <div class="nav-displacer">
 
 </div>
-<?php session_start();
