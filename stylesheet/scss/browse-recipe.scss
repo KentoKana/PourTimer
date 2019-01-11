@@ -1,16 +1,20 @@
-@mixin table-wrap-bg-color {
-	background-image: linear-gradient(to bottom right, brown, chocolate);
-}  
+// @mixin table-wrap-bg-color {
+// 	background-image: linear-gradient(to bottom right, brown, chocolate);
+// }  
 
 main {
 	div.browse-recipe {
+		h1{
+			color: black;
+			margin-top: 0;
+		}
 		max-width: 1200px;
 		display: flex;
 		flex-direction: column;
 		text-align: center;
 		margin: auto;
 		div.browse-recipe-wrap {
-			@include table-wrap-bg-color;
+			// @include table-wrap-bg-color;
 			margin: 40px 20% 0 20%;
 			padding: 10px;
 			border-radius: 5px;
@@ -29,19 +33,19 @@ main {
 					background: rgba(204, 204, 204, 0.5);
 
 					&:hover {
-						background: rgba(255, 255, 255, 1)
+						background: #FFCDBC;
 					}
 				}
 				td:nth-child(odd) {
 					background: rgba(255, 255, 255, 0.5);
 					&:hover {
-						background: rgba(255, 255, 255, 1);
+						background: #FFCDBC;
 					}
 					cursor: pointer;
 				}
 
 				th, td {
-					border-bottom: 2px solid #130303;
+					border-bottom: 1px solid #130303;
 					font-size: 1.5em;
 				}
 			}

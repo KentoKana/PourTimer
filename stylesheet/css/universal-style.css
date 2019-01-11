@@ -72,6 +72,7 @@ div.nav-displacer {
 footer {
   background-color: #130303;
   color: #F7A673;
+  margin-top: 50px;
 }
 footer div.footer-wrap {
   max-width: 1200px;

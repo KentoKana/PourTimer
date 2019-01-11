@@ -5,8 +5,11 @@ main div.browse-recipe {
   text-align: center;
   margin: auto;
 }
+main div.browse-recipe h1 {
+  color: black;
+  margin-top: 0;
+}
 main div.browse-recipe div.browse-recipe-wrap {
-  background-image: linear-gradient(to bottom right, brown, chocolate);
   margin: 40px 20% 0 20%;
   padding: 10px;
   border-radius: 5px;
@@ -24,17 +27,17 @@ main div.browse-recipe div.browse-recipe-wrap table td:nth-child(even) {
   background: rgba(204, 204, 204, 0.5);
 }
 main div.browse-recipe div.browse-recipe-wrap table td:nth-child(even):hover {
-  background: white;
+  background: #FFCDBC;
 }
 main div.browse-recipe div.browse-recipe-wrap table td:nth-child(odd) {
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
 }
 main div.browse-recipe div.browse-recipe-wrap table td:nth-child(odd):hover {
-  background: white;
+  background: #FFCDBC;
 }
 main div.browse-recipe div.browse-recipe-wrap table th, main div.browse-recipe div.browse-recipe-wrap table td {
-  border-bottom: 2px solid #130303;
+  border-bottom: 1px solid #130303;
   font-size: 1.5em;
 }
 

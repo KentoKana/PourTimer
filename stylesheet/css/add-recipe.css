@@ -10,7 +10,7 @@ main input {
 main .add-recipe {
   max-width: 1200px;
   text-align: center;
-  margin: 0 20% 60px 20%;
+  margin: 0 20% 0 20%;
 }
 main .add-recipe label {
   display: inline-block;

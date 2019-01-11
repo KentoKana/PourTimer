@@ -96,7 +96,7 @@ div.nav-displacer {
 footer {
 	background-color: $nav-footer-bg;
 	color: $nav-footer-text-color;
-
+	margin-top: 50px;
 	div.footer-wrap {
 		@include section-max-width;
 		text-align: center;
