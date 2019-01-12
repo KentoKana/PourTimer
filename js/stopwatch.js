@@ -1,3 +1,7 @@
+"use strict";
+window.onload = function() {
+	
+
 //=======================Stopwatch logic===========================//
 
 
@@ -147,3 +151,4 @@ document.body.onkeydown = function(e){
 	}
 }
 
+}

@@ -8,9 +8,14 @@ a {
   color: inherit;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .button {
   background-color: #7C3626;
-  border-radius: 5px;
   color: #fff;
   padding: 10px 10px 10px 10px;
   margin: 0 auto 0 auto;
@@ -19,6 +24,8 @@ a {
 }
 .button:hover {
   background-color: #F7A673;
+  text-decoration-line: none;
+  color: inherit;
 }
 
 body {
@@ -45,9 +52,11 @@ nav div.nav-wrap {
 }
 nav div.nav-wrap a {
   align-self: center;
+  color: #F7A673;
 }
 nav div.nav-wrap a:hover {
   color: #FFCDBC;
+  text-decoration-line: none;
 }
 nav div.nav-wrap ul {
   list-style-type: none;

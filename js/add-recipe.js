@@ -22,12 +22,10 @@ window.onload = function () {
 		let timeField = "<input type='text' class='userInput' id='pour-point-time" + (counter +1) + "' name='pour-point-time[]'><div class='val-message'></div>";
 		let amtField = "<input type='text' class='userInput int'id='pour-point-amt" + (counter + 1) + "' name='pour-point-amt[]'><div class='val-message'></div>";
 
-		//create labels for the fields, with unique id.
-		// let timeLbl = '<label for="pour-point-time' + (counter + 1) + '"> Time: </label> ';
-		// let amtLbl = '<div><label for="pour-point-amt' + (counter + 1) + '"> Water Amount: </label> ';
-
 		//Adds field to the table in add-recipe.php.
 		//Prepends 'list number' in front of the forms.
+		//Inititally, the fields were added using innerHTML, but this caused an issue where the texts of the existing fields would reset, 
+		//every time a new field was added.
 		$('#pour-point-div').append(
 			"<tr class='pourGroup'><td>" 
 			+ (counter + 1) 
@@ -56,7 +54,7 @@ window.onload = function () {
 	const userInput = document.getElementsByClassName('userInput');
 
 	let formValidity = false;
-	formHandler[0].onsubmit = function() {
+	formHandler[0].submit_button.onclick = function() {
 		for(i=0;i<userInput.length;i++){
 			if($('.userInput').eq(i).val() === "" || $('.userInput').eq(i).val() === null){
 				$('.userInput').eq(i).addClass('empty');
@@ -76,12 +74,17 @@ window.onload = function () {
 				$('.val-message').eq(i).html('');
 			}
 
+			//If the form is valid, it opens up a bootstrap modal.
+			//When the modal opens up, you can click "save recipe" to submit form.
 			if(!$('.userInput').hasClass('invalidField') && !$('.userInput').hasClass('empty')){
 				formValidity = true;
+				$('#submitButton').attr('data-toggle', 'modal');
+				$('#submitButton').attr('data-target', '#confirmationModal');
+			} else {
+				$("#submitButton").removeAttr("data-toggle");
+				$("#submitButton").removeAttr("data-target");
 			}
 		}
-		console.log(formValidity);
-		return formValidity;
 	}
 
 }

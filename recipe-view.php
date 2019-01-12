@@ -46,7 +46,7 @@
 
 								//prepends list number for each pour-point.
 								"<td><ol><li>" . str_replace(", ", "<li>", $row['pour_points_time'] . "</li>") . "</li></ol></td>" .
-								"<td>" . str_replace(", ", "<br>", $row['pour_points_water_amt']) . "</td>" .
+								"<td><ul><li>" . str_replace(", ", "<li>", $row['pour_points_water_amt'] . "</li>") . "</li></ol></td>" .
 								"</tr>";
 								print "<tr><td>Notes: </td>" . "<td colspan='2'> $row[notes] </td></tr>";
 
@@ -62,8 +62,8 @@
 				<div class="timer-col-wrap">
 					<h2 id="timer">00 : 00 : 000</h2>
 					<div class="timer-buttons">
-						<button id="toggle">Start</button>
-						<button id="reset">Reset</button>
+						<button class="button __button" id="toggle">Start</button>
+						<button class="button __button" id="reset">Reset</button>
 					</div>
 				</div>
 			</div>

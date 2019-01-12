@@ -15,7 +15,6 @@ $button-color: #7C3626;
 }
 
 
-//SCSS
 * {
 	box-sizing: border-box;
 }
@@ -24,12 +23,17 @@ a {
 	cursor: pointer;
 	text-decoration: none;
 	color: inherit;
+}
 
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 .button {
 	background-color:$button-color;
-	border-radius:5px;
+	// border-radius:5px;
 	color:#fff;
 	padding:10px 10px 10px 10px;
 	margin: 0 auto 0 auto;
@@ -37,6 +41,9 @@ a {
 	border: none;
 	&:hover {
 		background-color: #F7A673;
+		text-decoration-line: none;
+		color: inherit;
+
 	}
 
 }
@@ -63,9 +70,12 @@ nav {
 		@include section-max-width;
 		a {
 			align-self: center;
+			color: $nav-footer-text-color;
 			&:hover {
 				color: #FFCDBC;
+				text-decoration-line: none;
 			}
+
 		}
 
 		ul {			

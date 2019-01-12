@@ -13,6 +13,7 @@ main .home h1 {
 }
 main .home a {
   margin-top: 20px;
+  text-decoration-line: none;
 }
 
 p {
