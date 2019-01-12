@@ -12,7 +12,6 @@
 <body>
 	<!-- Header -->
 	<?php include('inc/header.php')?>
-
 	<!-- Main -->
 	<main>
 		<div class='section-wrap add-recipe'>
@@ -86,8 +85,6 @@
 					</div>
 
 					<button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button>
-
-
 
 					<!-- Bootstrap Modal -->
 					<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
