@@ -55,7 +55,6 @@
 					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt">
 					<div class="val-message" id="total-water-amt-validation"></div>
 
-
 					<!-- Pour Points -->
 					<div>
 						<label>Pour Points:</label>
@@ -156,7 +155,6 @@
 
 				}
 			}
-
 			?>
 		</div>
 	</div>
