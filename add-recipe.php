@@ -109,13 +109,6 @@
 
 				</form>
 
-				<!-- Button trigger modal -->
-<!-- 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmationModal">
-				Launch demo modal
-			</button> -->
-
-
-
 			<!-- Handle Form -->
 			<!-- Will separate this logic in another file later-->
 			<?php
