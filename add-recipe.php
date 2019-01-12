@@ -75,7 +75,6 @@
 									<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]"><div class='val-message'></div></td>
 								</tr>
 							</tbody>
-
 						</table>
 					</div>
 
@@ -83,7 +82,12 @@
 						<label for="notes">Notes:<span class='optional'>(optional)</span></label>
 					</div>
 					<textarea id='notes' name="notes" placeholder="eg. Stir the grounds during bloom. Pour clockwise. Etc."></textarea>
+					<div id="validationSummary" class="required">					
+					</div>
+
 					<button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button>
+
+
 
 					<!-- Bootstrap Modal -->
 					<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">

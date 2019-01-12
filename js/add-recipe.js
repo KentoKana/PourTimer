@@ -76,6 +76,7 @@ window.onload = function () {
 			//When the modal opens up, you can click "save recipe" to submit form.
 			if(!$('.userInput').hasClass('invalidField') && !$('.userInput').hasClass('empty')){
 				formValidity = true;
+				$('#validationSummary').html('');
 				$('#submitButton').attr('data-toggle', 'modal');
 				$('#submitButton').attr('data-target', '#confirmationModal');
 			} else {
@@ -84,6 +85,10 @@ window.onload = function () {
 			}
 		}
 
+
+		if(formValidity === false){
+			$('#validationSummary').html('*Please make sure that all the fields are filled in correctly.');
+		}
 		printToModal();
 	}
 
