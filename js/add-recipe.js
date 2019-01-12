@@ -52,7 +52,7 @@ window.onload = function () {
 	const userInput = document.getElementsByClassName('userInput');
 
 	let formValidity = false;
-	formHandler[0].submit_button.onclick = function() {
+	formHandler[0].submit_button.onclick = function () {
 		for(i=0;i<userInput.length;i++){
 			if($('.userInput').eq(i).val() === "" || $('.userInput').eq(i).val() === null){
 				$('.userInput').eq(i).addClass('empty');
@@ -83,6 +83,15 @@ window.onload = function () {
 				$("#submitButton").removeAttr("data-target");
 			}
 		}
+
+		printToModal();
 	}
 
+	var modalBodyData = document.getElementsByClassName('modal-body__data');
+
+	function printToModal() {
+		for(i=0;i<modalBodyData.length;i++) {
+			modalBodyData[i].innerHTML = $('.userInput').eq(i).val();
+		}
+	}
 }

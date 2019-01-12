@@ -96,7 +96,24 @@
 									</button>
 								</div>
 								<div class="modal-body">
-									...
+									<div>
+										Recipe Name: <span class="modal-body__data"></span>
+									</div>
+									<div>
+										Water Temperature: <span class="modal-body__data"></span>
+									</div>
+									<div>
+										Bean Amount: <span class="modal-body__data"></span>
+									</div>
+									<div>
+										Grind Setting: <span class="modal-body__data"></span>
+									</div>	
+									<div>
+										Total Water Amount: <span class="modal-body__data"></span>
+									</div>
+									<div>
+										Pour Points: <span class="modal-body__data"></span>
+									</div>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="button btn-secondary" data-dismiss="modal">Close</button>
@@ -108,60 +125,60 @@
 
 				</form>
 
-			<!-- Handle Form -->
-			<!-- Will separate this logic in another file later-->
-			<?php
+				<!-- Handle Form -->
+				<!-- Will separate this logic in another file later-->
+				<?php
 
-			if(isset($_POST["confirm_submission"])){
+				if(isset($_POST["confirm_submission"])){
 
 
 			//DB insert statement
-				$insertStmt = $conn->prepare("INSERT INTO recipe VALUES (DEFAULT, :recipe_name, :water_temp, :bean_amt, :grind_setting, :total_water_amt, :pour_points_water_amt, :pour_points_time, :notes)");
+					$insertStmt = $conn->prepare("INSERT INTO recipe VALUES (DEFAULT, :recipe_name, :water_temp, :bean_amt, :grind_setting, :total_water_amt, :pour_points_water_amt, :pour_points_time, :notes)");
 
 			//Bind parameters to variables
-				$insertStmt->bindParam(':recipe_name', $recipe_name);
-				$insertStmt->bindParam(':water_temp', $water_temp);
-				$insertStmt->bindParam(':bean_amt', $bean_amt);
-				$insertStmt->bindParam(':grind_setting', $grind_setting);
-				$insertStmt->bindParam(':total_water_amt', $total_water_amt);
-				$insertStmt->bindParam(':pour_points_water_amt', $pour_points_water_amt);
-				$insertStmt->bindParam(':pour_points_time', $pour_points_time);
-				$insertStmt->bindParam(':notes', $notes);
+					$insertStmt->bindParam(':recipe_name', $recipe_name);
+					$insertStmt->bindParam(':water_temp', $water_temp);
+					$insertStmt->bindParam(':bean_amt', $bean_amt);
+					$insertStmt->bindParam(':grind_setting', $grind_setting);
+					$insertStmt->bindParam(':total_water_amt', $total_water_amt);
+					$insertStmt->bindParam(':pour_points_water_amt', $pour_points_water_amt);
+					$insertStmt->bindParam(':pour_points_time', $pour_points_time);
+					$insertStmt->bindParam(':notes', $notes);
 
 			//Sanitize user input
-				filter_var($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+				// filter_var($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
-				$recipe_name = filter_var($_POST['recipe-name'], FILTER_SANITIZE_SPECIAL_CHARS);
-				$water_temp = filter_var($_POST['water-temp'], FILTER_SANITIZE_SPECIAL_CHARS);
-				$bean_amt = filter_var($_POST['bean-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
-				$grind_setting = filter_var($_POST['grind-setting'], FILTER_SANITIZE_SPECIAL_CHARS);
-				$total_water_amt = filter_var($_POST['total-water-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
-				$notes = filter_var($_POST['notes'], FILTER_SANITIZE_SPECIAL_CHARS);
+					$recipe_name = filter_var($_POST['recipe-name'], FILTER_SANITIZE_SPECIAL_CHARS);
+					$water_temp = filter_var($_POST['water-temp'], FILTER_SANITIZE_SPECIAL_CHARS);
+					$bean_amt = filter_var($_POST['bean-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
+					$grind_setting = filter_var($_POST['grind-setting'], FILTER_SANITIZE_SPECIAL_CHARS);
+					$total_water_amt = filter_var($_POST['total-water-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
+					$notes = filter_var($_POST['notes'], FILTER_SANITIZE_SPECIAL_CHARS);
 
 			//Concatinate all item in pour points time/pour points water amt to one string, then sanitize input;
-				$pour_points_time_raw =  implode(", ",$_POST['pour-point-time']);
-				$pour_points_time = filter_var($pour_points_time_raw, FILTER_SANITIZE_SPECIAL_CHARS);
+					$pour_points_time_raw =  implode(", ",$_POST['pour-point-time']);
+					$pour_points_time = filter_var($pour_points_time_raw, FILTER_SANITIZE_SPECIAL_CHARS);
 
-				$pour_points_water_amt_raw =  implode(", ",$_POST['pour-point-amt']);
-				$pour_points_water_amt = filter_var($pour_points_water_amt_raw, FILTER_SANITIZE_SPECIAL_CHARS);
+					$pour_points_water_amt_raw =  implode(", ",$_POST['pour-point-amt']);
+					$pour_points_water_amt = filter_var($pour_points_water_amt_raw, FILTER_SANITIZE_SPECIAL_CHARS);
 
-				try {
+					try {
 
-					$insertStmt->execute();
+						$insertStmt->execute();
 
-				} catch(PDOException $e) {
+					} catch(PDOException $e) {
 
-					echo 'PDOException: ' . $e->getMessage();
+						echo 'PDOException: ' . $e->getMessage();
 
+					}
 				}
-			}
-			?>
+				?>
+			</div>
 		</div>
-	</div>
-</main>
+	</main>
 
-<!-- Footer -->
-<?php include('inc/footer.php')?>
+	<!-- Footer -->
+	<?php include('inc/footer.php')?>
 </body>
 <script src="js/add-recipe.js"></script>
 <!-- Bootstrap dependencies -->
