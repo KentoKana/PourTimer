@@ -10,7 +10,6 @@ window.onload = function () {
 	const pourPointDiv = document.getElementById("pour-point-div");
 	const pourPoint = document.getElementsByClassName('pourGroup');
 
-
 	//Event Listeners
 	addPourPointBtn.addEventListener('click', addPourPointField);
 	removePourPointBtn.addEventListener('click', removePourPointField);
@@ -47,7 +46,6 @@ window.onload = function () {
 		} 
 		return counter;
 	}
-
 
 	//Form Validation
 	const formHandler = document.forms;
