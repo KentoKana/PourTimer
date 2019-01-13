@@ -20,11 +20,12 @@ include('inc/database.php');
 		<div class='section-wrap browse-recipe'>
 
 			<div class="browse-recipe-wrap">
-				<!-- Table to display recipe list -->
-				<table>
-					<tr>
-						<th><h1>Recipe Name</h1></th>
-					</tr>
+				<h1>Recipe Name</h1>
+
+				<div class="jumbotron">
+					<!-- Table to display recipe list -->
+					<table>
+						<th></th>
 						<?php
 
 					//Select statement
@@ -45,7 +46,8 @@ include('inc/database.php');
 							}
 						}
 						?>
-				</table>
+					</table>
+				</div>
 			</div>
 		</div>
 

@@ -42,13 +42,13 @@
 					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee">
 					<div class="val-message"id="recipe-name-validation"></div>
 					<div>
-						<label for="water-temp"><span class="required">*</span>Water Temperature:</label>
+						<label for="water-temp"><span class="required">*</span>Water Temperature (&#8451;):</label>
 					</div>
 					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93">
 					<div class="val-message" id="water-temp-validation"></div>
 
 					<div>
-						<label for="bean-amt"><span class="required">*</span>Bean Amount:</label>
+						<label for="bean-amt"><span class="required">*</span>Bean Amount (g):</label>
 					</div>
 					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20">
 					<div class="val-message" id="bean-amt-validation"></div>
@@ -66,7 +66,7 @@
 					<div class="val-message" id="grind-setting-validation"></div>
 
 					<div>
-						<label for="total-water-amt"><span class="required">*</span>Total Water Amount:</label>
+						<label for="total-water-amt"><span class="required">*</span>Total Water Amount (g): </label>
 					</div>
 					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300">
 					<div class="val-message" id="total-water-amt-validation"></div>
@@ -83,12 +83,12 @@
 						<table>
 							<tbody id="pour-point-div">
 								<th></th>
-								<th><label for="pour-point-time"><span class="required">*</span>Time:</label></th>
-								<th><label for="pour-point-amt"><span class="required">*</span>Water Amount:</label></th>
+								<th><label for="pour-point-time"><span class="required">*</span>Time (MM:SS):</label></th>
+								<th><label for="pour-point-amt"><span class="required">*</span>Water Amount (g):</label></th>
 								<tr>
 									<td>1.</td>
-									<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]" placeholder='MM:SS'><div class='val-message'></div></td>
-									<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]" placeholder="50"><div class='val-message'></div></td>
+									<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]" value="00:00"><div class='val-message'></div></td>
+									<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]" placeholder="e.g. 50"><div class='val-message'></div></td>
 								</tr>
 							</tbody>
 						</table>
@@ -97,7 +97,7 @@
 					<div>
 						<label for="notes">Notes:<span class='optional'>(optional)</span></label>
 					</div>
-					<textarea id='notes' name="notes" placeholder="eg. Stir the grounds during bloom. Pour clockwise. Etc."></textarea>
+					<textarea id='notes' name="notes" placeholder="e.g. Stir the grounds during bloom. Pour clockwise. Etc."></textarea>
 					<div id="validationSummary" class="required">					
 					</div>
 
@@ -108,7 +108,7 @@
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="confirmationModalTitle">Submission Confirmation</h5>
+									<h5 class="modal-title" id="confirmationModalTitle">Confirm Submission</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
@@ -134,8 +134,8 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="button btn-secondary" data-dismiss="modal">Close</button>
-									<button type="submit" name="confirm_submission" class="button">Save Recipe</button>
+									<button type="button" class="button btn-secondary" data-dismiss="modal">Cancel</button>
+									<button type="submit" name="confirm_submission" class="button">Confirm and Submit</button>
 								</div>
 							</div>
 						</div>

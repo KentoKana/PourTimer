@@ -36,6 +36,9 @@ main .add-recipe #pourGroupTableDiv {
 main .add-recipe #pourGroupTableDiv table {
   margin: 0 auto;
 }
+main .add-recipe #pourGroupTableDiv table tbody th {
+  font-weight: normal;
+}
 main .add-recipe #pourGroupTableDiv table tbody td {
   padding: 0;
 }
