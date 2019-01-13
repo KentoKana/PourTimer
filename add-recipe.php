@@ -182,8 +182,11 @@
 					try {
 
 						$insertStmt->execute();
-						$last_id = $conn->lastInsertId();
-						header("Location: add-recipe.php?insertStatus=success&recipeId=$last_id"); 
+						$insertedRecipe = $conn->lastInsertId();
+                        //Get last id of the inserted data.
+                        //https://www.w3schools.com/php/php_mysql_insert_lastid.asp
+						header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe"); 
+                        //http://php.net/manual/en/function.header.php
 					} catch(PDOException $e) {
 						echo 'PDOException: ' . $e->getMessage();
 					}
