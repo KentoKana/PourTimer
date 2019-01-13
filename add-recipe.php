@@ -44,13 +44,13 @@
 					<div>
 						<label for="water-temp"><span class="required">*</span>Water Temperature:</label>
 					</div>
-					<input type="text" id="water-temp" name="water-temp" class="userInput int">
+					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93">
 					<div class="val-message" id="water-temp-validation"></div>
 
 					<div>
 						<label for="bean-amt"><span class="required">*</span>Bean Amount:</label>
 					</div>
-					<input type="text" id="bean-amt" class="userInput int" name="bean-amt">
+					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20">
 					<div class="val-message" id="bean-amt-validation"></div>
 
 					<div>
@@ -68,7 +68,7 @@
 					<div>
 						<label for="total-water-amt"><span class="required">*</span>Total Water Amount:</label>
 					</div>
-					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt">
+					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300">
 					<div class="val-message" id="total-water-amt-validation"></div>
 
 					<!-- Pour Points -->
@@ -88,7 +88,7 @@
 								<tr>
 									<td>1.</td>
 									<td><input type="text" class="userInput" id="pour-point-time" name="pour-point-time[]" placeholder='MM:SS'><div class='val-message'></div></td>
-									<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]"><div class='val-message'></div></td>
+									<td><input type="text" class="userInput int" id="pour-point-amt" name="pour-point-amt[]" placeholder="50"><div class='val-message'></div></td>
 								</tr>
 							</tbody>
 						</table>

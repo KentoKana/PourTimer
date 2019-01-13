@@ -14,7 +14,7 @@ window.onload = function () {
 	addPourPointBtn.addEventListener('click', addPourPointField);
 	removePourPointBtn.addEventListener('click', removePourPointField);
 
-	//Generate form elements
+	//Generate input elements
 	function addPourPointField() {
 
 		//create fields
@@ -84,7 +84,6 @@ window.onload = function () {
 				$("#submitButton").removeAttr("data-target");
 			}
 		}
-
 
 		if(formValidity === false){
 			$('#validationSummary').html('*Please make sure that all the fields are filled in correctly.');
