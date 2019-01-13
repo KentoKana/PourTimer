@@ -59,6 +59,7 @@ body {
 
 //Navigation
 nav {
+	z-index: 999;
 	background-color: $nav-footer-bg;
 	position: fixed;
 	width: 100%;

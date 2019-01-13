@@ -17,6 +17,23 @@
 		<div class='section-wrap add-recipe'>
 			<h1>Add Recipe</h1>
 			<p><em>Please note: Any field marked with "<span class="required">*</span>" are required.</em></p>
+			<?php
+
+			$newRecipeId = $_REQUEST['recipeId'];
+			$newRecipeLink = "'recipe-view.php?recipeId=$newRecipeId'";
+
+			//Display a dismissable alert box (Bootstrap) when form is successfully submitted for adding recipe.
+			//https://getbootstrap.com/docs/4.0/components/alerts/
+			if ($_REQUEST['insertStatus'] === 'success') :?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong>You've successfully added your recipe!</strong> Check it out <a href= <?php echo $newRecipeLink; ?> >here.</a>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			<?php endif; ?>
+			<!-- https://stackoverflow.com/questions/5666788/php-how-to-hide-display-chunks-of-html-->
+
 			<div class="jumbotron">
 				<form action="add-recipe.php" method="POST">
 					<div>
@@ -132,7 +149,6 @@
 
 				if(isset($_POST["confirm_submission"])){
 
-
 			//DB insert statement
 					$insertStmt = $conn->prepare("INSERT INTO recipe VALUES (DEFAULT, :recipe_name, :water_temp, :bean_amt, :grind_setting, :total_water_amt, :pour_points_water_amt, :pour_points_time, :notes)");
 
@@ -166,11 +182,10 @@
 					try {
 
 						$insertStmt->execute();
-
+						$last_id = $conn->lastInsertId();
+						header("Location: add-recipe.php?insertStatus=success&recipeId=$last_id"); 
 					} catch(PDOException $e) {
-
 						echo 'PDOException: ' . $e->getMessage();
-
 					}
 				}
 				?>
