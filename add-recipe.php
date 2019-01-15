@@ -162,42 +162,55 @@
 					$insertStmt->bindParam(':pour_points_time', $pour_points_time);
 					$insertStmt->bindParam(':notes', $notes);
 
-			//Sanitize user input
-				// filter_var($_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
-					$recipe_name = filter_var($_POST['recipe-name'], FILTER_SANITIZE_SPECIAL_CHARS);
-					$water_temp = filter_var($_POST['water-temp'], FILTER_SANITIZE_SPECIAL_CHARS);
-					$bean_amt = filter_var($_POST['bean-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
-					$grind_setting = filter_var($_POST['grind-setting'], FILTER_SANITIZE_SPECIAL_CHARS);
-					$total_water_amt = filter_var($_POST['total-water-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
-					$notes = filter_var($_POST['notes'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-			//Concatinate all item in pour points time/pour points water amt to one string, then sanitize input;
-					$pour_points_time_raw =  implode(", ",$_POST['pour-point-time']);
-					$pour_points_time = filter_var($pour_points_time_raw, FILTER_SANITIZE_SPECIAL_CHARS);
+                    include('inc/Recipe.php');
+                    $newRecipe = new Recipe($_POST['recipe-name'], $_POST['water-temp'], $_POST['bean-amt'], $_POST['grind-setting'], $_POST['total-water-amt'], $_POST['pour-point-time'], $_POST['pour-point-amt']);
 
-					$pour_points_water_amt_raw =  implode(", ",$_POST['pour-point-amt']);
-					$pour_points_water_amt = filter_var($pour_points_water_amt_raw, FILTER_SANITIZE_SPECIAL_CHARS);
+                    $recipe_name = $newRecipe->getRecipeName();
+                    $water_temp = $newRecipe->getWaterTemp();
+                    $bean_amt = $newRecipe->getBeanAmt();
+                    $grind_setting = $newRecipe->getGrindSetting();
+                    $total_water_amt = $newRecipe->getTotalWaterAmt();
+                    $pour_points_time = $newRecipe->getPourPointsTime();
+                    $pour_points_water_amt = $newRecipe->getPourPointsWaterAmt();
 
-					try {
+                    $newRecipe->setNotes($_POST['notes']);
+                    $notes = $newRecipe->getNotes();
 
-						$insertStmt->execute();
-						$insertedRecipe = $conn->lastInsertId();
+					// $recipe_name = filter_var($_POST['recipe-name'], FILTER_SANITIZE_SPECIAL_CHARS);
+					// $water_temp = filter_var($_POST['water-temp'], FILTER_SANITIZE_SPECIAL_CHARS);
+					// $bean_amt = filter_var($_POST['bean-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
+					// $grind_setting = filter_var($_POST['grind-setting'], FILTER_SANITIZE_SPECIAL_CHARS);
+					// $total_water_amt = filter_var($_POST['total-water-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
+					// $notes = filter_var($_POST['notes'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+			       //Concatinate all item in pour points time/pour points water amt to one string, then sanitize input;
+					// $pour_points_time_raw =  implode(", ",$_POST['pour-point-time']);
+					// $pour_points_time = filter_var($pour_points_time_raw, FILTER_SANITIZE_SPECIAL_CHARS);
+
+					// $pour_points_water_amt_raw =  implode(", ",$_POST['pour-point-amt']);
+					// $pour_points_water_amt = filter_var($pour_points_water_amt_raw, FILTER_SANITIZE_SPECIAL_CHARS);
+
+                    try {
+
+                      $insertStmt->execute();
+                      $insertedRecipe = $conn->lastInsertId();
                         //Get last id of the inserted data.
                         //https://www.w3schools.com/php/php_mysql_insert_lastid.asp
-						header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe"); 
+                      header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe"); 
                         //http://php.net/manual/en/function.header.php
-					} catch(PDOException $e) {
-						echo 'PDOException: ' . $e->getMessage();
-					}
-				}
-				?>
-			</div>
-		</div>
-	</main>
+                  } catch(PDOException $e) {
+                      echo 'PDOException: ' . $e->getMessage();
+                  }                  
+              }
+              ?>
+          </div>
+      </div>
+  </main>
 
-	<!-- Footer -->
-	<?php include('inc/footer.php')?>
+  <!-- Footer -->
+  <?php include('inc/footer.php')?>
 </body>
 <script src="js/add-recipe.js"></script>
 <!-- Bootstrap dependencies -->
