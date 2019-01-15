@@ -26,7 +26,7 @@
 			//https://getbootstrap.com/docs/4.0/components/alerts/
 			if ($_REQUEST['insertStatus'] === 'success') :?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
-					<strong>You've successfully added your recipe!</strong> Check it out <a href= <?php echo $newRecipeLink; ?> >here.</a>
+					<strong>You've successfully added your recipe!</strong> Check it out <a href= <?= $newRecipeLink; ?> >here.</a>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -39,12 +39,17 @@
 					<div>
 						<label for="recipe-name"><span class="required">*</span>Recipe Name:</label>
 					</div>
-					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee">
+					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee" value= 
+					<?php
+					
+					?>
+					>
 					<div class="val-message"id="recipe-name-validation"></div>
 					<div>
 						<label for="water-temp"><span class="required">*</span>Water Temperature (&#8451;):</label>
 					</div>
 					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93">
+
 					<div class="val-message" id="water-temp-validation"></div>
 
 					<div>
@@ -165,7 +170,15 @@
 
 
                     include('inc/Recipe.php');
-                    $newRecipe = new Recipe($_POST['recipe-name'], $_POST['water-temp'], $_POST['bean-amt'], $_POST['grind-setting'], $_POST['total-water-amt'], $_POST['pour-point-time'], $_POST['pour-point-amt']);
+                    $newRecipe = new Recipe(
+                        $_POST['recipe-name'], 
+                        $_POST['water-temp'], 
+                        $_POST['bean-amt'], 
+                        $_POST['grind-setting'], 
+                        $_POST['total-water-amt'], 
+                        $_POST['pour-point-time'], 
+                        $_POST['pour-point-amt']
+                    );
 
                     $recipe_name = $newRecipe->getRecipeName();
                     $water_temp = $newRecipe->getWaterTemp();
@@ -177,20 +190,6 @@
 
                     $newRecipe->setNotes($_POST['notes']);
                     $notes = $newRecipe->getNotes();
-
-					// $recipe_name = filter_var($_POST['recipe-name'], FILTER_SANITIZE_SPECIAL_CHARS);
-					// $water_temp = filter_var($_POST['water-temp'], FILTER_SANITIZE_SPECIAL_CHARS);
-					// $bean_amt = filter_var($_POST['bean-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
-					// $grind_setting = filter_var($_POST['grind-setting'], FILTER_SANITIZE_SPECIAL_CHARS);
-					// $total_water_amt = filter_var($_POST['total-water-amt'], FILTER_SANITIZE_SPECIAL_CHARS);
-					// $notes = filter_var($_POST['notes'], FILTER_SANITIZE_SPECIAL_CHARS);
-
-			       //Concatinate all item in pour points time/pour points water amt to one string, then sanitize input;
-					// $pour_points_time_raw =  implode(", ",$_POST['pour-point-time']);
-					// $pour_points_time = filter_var($pour_points_time_raw, FILTER_SANITIZE_SPECIAL_CHARS);
-
-					// $pour_points_water_amt_raw =  implode(", ",$_POST['pour-point-amt']);
-					// $pour_points_water_amt = filter_var($pour_points_water_amt_raw, FILTER_SANITIZE_SPECIAL_CHARS);
 
                     try {
 

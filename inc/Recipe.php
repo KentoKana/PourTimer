@@ -99,6 +99,11 @@ class Recipe {
 	{
 		$this->notes = $notes;
 	}
+
+	public function validateInput($input)
+	{
+		
+	}
 }
 
 ?>
