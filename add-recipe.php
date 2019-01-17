@@ -1,4 +1,10 @@
-<?php include('inc/database.php')?>
+<?php 
+include('inc/database.php');
+include('inc/classes/Validation.php');
+//validator object from validation class.
+$validator = new ValidateField();
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,24 +45,45 @@
 					<div>
 						<label for="recipe-name"><span class="required">*</span>Recipe Name:</label>
 					</div>
-					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee" value= 
-					<?php
-					
-					?>
-					>
-					<div class="val-message"id="recipe-name-validation"></div>
+					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee" value=
+					<?php 
+					$validator->displayPostedValue($_POST['recipe-name']); 
+					?>>
+					<div class="val-message"id="recipe-name-validation">
+						<?php
+						$validator->validateEmptyInput($_POST['recipe-name']);
+						?>
+					</div>
+
 					<div>
 						<label for="water-temp"><span class="required">*</span>Water Temperature (&#8451;):</label>
 					</div>
-					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93">
+					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93" value=
+					<?php 
+					$validator->displayPostedValue($_POST['water-temp']); 
+					?>>
 
-					<div class="val-message" id="water-temp-validation"></div>
+					<div class="val-message" id="water-temp-validation">
+						<?php
+						$validator->validateEmptyInput($_POST['water-temp']);
+						$validator->validateIntInput($_POST['water-temp']);
+						?>
+					</div>
+
 
 					<div>
 						<label for="bean-amt"><span class="required">*</span>Bean Amount (g):</label>
 					</div>
-					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20">
-					<div class="val-message" id="bean-amt-validation"></div>
+					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20" value=
+					<?php 
+					$validator->displayPostedValue($_POST['bean-amt']); 
+					?>>
+					<div class="val-message" id="bean-amt-validation">
+						<?php
+						$validator->validateEmptyInput($_POST['bean-amt']);
+						$validator->validateIntInput($_POST['bean-amt']);
+						?>	
+					</div>
 
 					<div>
 						<label for="grind-setting"><span class="required">*</span>Grind Setting:</label>
@@ -68,13 +95,24 @@
 						<option value="Filter (Medium)">Filter (Medium)</option>
 						<option value="French Press (Coarse)">French Press (Coarse)</option>
 					</select>
-					<div class="val-message" id="grind-setting-validation"></div>
-
+					<div class="val-message" id="grind-setting-validation">
+						<?php
+						//Need to create validator for drop down menu.
+						?>
+					</div>
 					<div>
 						<label for="total-water-amt"><span class="required">*</span>Total Water Amount (g): </label>
 					</div>
-					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300">
-					<div class="val-message" id="total-water-amt-validation"></div>
+					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300" value=
+					<?php 
+					$validator->displayPostedValue($_POST['total-water-amt']); 
+					?>>
+					<div class="val-message" id="total-water-amt-validation">
+						<?php
+						$validator->validateEmptyInput($_POST['total-water-amt']);
+						$validator->validateIntInput($_POST['total-water-amt']);
+						?>	
+					</div>
 
 					<!-- Pour Points -->
 					<div>
@@ -103,10 +141,12 @@
 						<label for="notes">Notes:<span class='optional'>(optional)</span></label>
 					</div>
 					<textarea id='notes' name="notes" placeholder="e.g. Stir the grounds during bloom. Pour clockwise. Etc."></textarea>
-					<div id="validationSummary" class="required">					
+					<div id="validationSummary" class="required">
+
 					</div>
 
-					<button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button>
+					<!-- <button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button>-->
+					<button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
 
 					<!-- Bootstrap Modal -->
 					<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
@@ -154,10 +194,10 @@
 
 				if(isset($_POST["confirm_submission"])){
 
-			//DB insert statement
+				//DB insert statement
 					$insertStmt = $conn->prepare("INSERT INTO recipe VALUES (DEFAULT, :recipe_name, :water_temp, :bean_amt, :grind_setting, :total_water_amt, :pour_points_water_amt, :pour_points_time, :notes)");
 
-			//Bind parameters to variables
+				//Bind parameters to variables
 					$insertStmt->bindParam(':recipe_name', $recipe_name);
 					$insertStmt->bindParam(':water_temp', $water_temp);
 					$insertStmt->bindParam(':bean_amt', $bean_amt);
@@ -167,49 +207,46 @@
 					$insertStmt->bindParam(':pour_points_time', $pour_points_time);
 					$insertStmt->bindParam(':notes', $notes);
 
+					include('inc/Recipe.php');
+					$newRecipe = new Recipe(
+						$_POST['recipe-name'], 
+						$_POST['water-temp'], 
+						$_POST['bean-amt'], 
+						$_POST['grind-setting'], 
+						$_POST['total-water-amt'], 
+						$_POST['pour-point-time'], 
+						$_POST['pour-point-amt']
+					);
 
+					$recipe_name = $newRecipe->getRecipeName();
+					$water_temp = $newRecipe->getWaterTemp();
+					$bean_amt = $newRecipe->getBeanAmt();
+					$grind_setting = $newRecipe->getGrindSetting();
+					$total_water_amt = $newRecipe->getTotalWaterAmt();
+					$pour_points_time = $newRecipe->getPourPointsTime();
+					$pour_points_water_amt = $newRecipe->getPourPointsWaterAmt();
 
-                    include('inc/Recipe.php');
-                    $newRecipe = new Recipe(
-                        $_POST['recipe-name'], 
-                        $_POST['water-temp'], 
-                        $_POST['bean-amt'], 
-                        $_POST['grind-setting'], 
-                        $_POST['total-water-amt'], 
-                        $_POST['pour-point-time'], 
-                        $_POST['pour-point-amt']
-                    );
+					$newRecipe->setNotes($_POST['notes']);
+					$notes = $newRecipe->getNotes();
 
-                    $recipe_name = $newRecipe->getRecipeName();
-                    $water_temp = $newRecipe->getWaterTemp();
-                    $bean_amt = $newRecipe->getBeanAmt();
-                    $grind_setting = $newRecipe->getGrindSetting();
-                    $total_water_amt = $newRecipe->getTotalWaterAmt();
-                    $pour_points_time = $newRecipe->getPourPointsTime();
-                    $pour_points_water_amt = $newRecipe->getPourPointsWaterAmt();
-
-                    $newRecipe->setNotes($_POST['notes']);
-                    $notes = $newRecipe->getNotes();
-
-                    try {
-
-                      $insertStmt->execute();
-                      $insertedRecipe = $conn->lastInsertId();
+					try {
+						$insertStmt->execute();
+						$insertedRecipe = $conn->lastInsertId();
                         //Get last id of the inserted data.
                         //https://www.w3schools.com/php/php_mysql_insert_lastid.asp
-                      header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe"); 
+						header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe"); 
                         //http://php.net/manual/en/function.header.php
-                  } catch(PDOException $e) {
-                      echo 'PDOException: ' . $e->getMessage();
-                  }                  
-              }
-              ?>
-          </div>
-      </div>
-  </main>
+					} catch(PDOException $e) {
+						echo 'PDOException: ' . $e->getMessage();
+					}                  
+				}
+				?>
+			</div>
+		</div>
+	</main>
 
-  <!-- Footer -->
-  <?php include('inc/footer.php')?>
+	<!-- Footer -->
+	<?php include('inc/footer.php')?>
 </body>
 <script src="js/add-recipe.js"></script>
 <!-- Bootstrap dependencies -->
