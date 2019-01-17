@@ -2,13 +2,16 @@
 include('inc/database.php');
 include('lib/Validation.php');
 ini_set('display_errors',1);
-error_reporting(E_ALL);
+error_reporting(0);
 
 //Array for catching any errors in form;
-$errorArr = array();
-
-//validator object from validation class.
-// $validator = new ValidateField();
+//need to set value for each post items, and change the value.
+$errorArr = array(
+	"recipe-name" => 0,
+	"water-temp" => 0,
+	"bean-amt" => 0,
+	"total-water-amt" => 0
+);
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +29,8 @@ $errorArr = array();
 	<main>
 		<div class='section-wrap add-recipe'>
 			<h1>Add Recipe</h1>
+			<?php echo $_POST['recipe-name']; ?>
+
 			<p><em>Please note: Any field marked with "<span class="required">*</span>" are required.</em></p>
 			<?php
 
@@ -34,6 +39,7 @@ $errorArr = array();
 			//Display a dismissable alert box (Bootstrap) when form is successfully submitted for adding recipe.
 			//https://getbootstrap.com/docs/4.0/components/alerts/
 			if ($_REQUEST['insertStatus'] === 'success') :
+				//If successfully inserted into DB, clear POST array.
 				$_POST = array();
 				?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -51,46 +57,62 @@ $errorArr = array();
 					<div>
 						<label for="recipe-name"><span class="required">*</span>Recipe Name:</label>
 					</div>
-					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee">
 					<div class="val-message"id="recipe-name-validation">
 						<?php
 						if(Validator::validateEmptyInput($_POST['recipe-name']) == false)
 						{
-							$error['recipe-name'] = 1;
-							var_dump($error['recipe-name']);
+							$errorArr['recipe-name'] = 1;
 						}
 						?>
 					</div>
+					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee" 
+					<?php
+					if(isset($_POST['recipe-name']))
+					{
+						echo "value='" . $_POST['recipe-name'] . "'";
+					}
+					?>>
+
 
 					<div>
 						<label for="water-temp"><span class="required">*</span>Water Temperature (&#8451;):</label>
 					</div>
-					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93">
-
 					<div class="val-message" id="water-temp-validation">
 						<?php
 						if(Validator::validateIntInput($_POST['water-temp']) == false)
 						{
-							$error['water-temp'] = 1;
-							var_dump($error['water-temp']);
+							$errorArr['water-temp'] = 1;
+							var_dump($errorArr['water-temp']);
 						}
 						?>
 					</div>
-
+					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93"
+					<?php
+					if(empty($errorArr) == false)
+					{
+						echo "value='" . $_POST['water-temp'] . "'";
+					}
+					?>>
 
 					<div>
 						<label for="bean-amt"><span class="required">*</span>Bean Amount (g):</label>
 					</div>
-					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20">
 					<div class="val-message" id="bean-amt-validation">
 						<?php
 						if(Validator::validateIntInput($_POST['bean-amt']) == false)
 						{
-							$error['bean-amt'] = 1;
-							var_dump($error['bean-amt']);
+							$errorArr['bean-amt'] = 1;
+							var_dump($errorArr['bean-amt']);
 						}
 						?>	
 					</div>
+					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20" 
+					<?php
+					if(empty($errorArr) == false)
+					{
+						echo "value='" . $_POST['bean-amt'] . "'";
+					}
+					?>>
 
 					<div>
 						<label for="grind-setting"><span class="required">*</span>Grind Setting:</label>
@@ -110,16 +132,21 @@ $errorArr = array();
 					<div>
 						<label for="total-water-amt"><span class="required">*</span>Total Water Amount (g): </label>
 					</div>
-					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300">
 					<div class="val-message" id="total-water-amt-validation">
 						<?php
 						if(Validator::validateIntInput($_POST['total-water-amt']) == false)
 						{
-							$error['total-water-amt'] = 1;
-							var_dump($error['total-water-amt']);
+							$errorArr['total-water-amt'] = 1;
 						}
 						?>	
 					</div>
+					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300"
+					<?php
+					if(!empty($errorArr))
+					{
+						echo "value='" . $_POST['total-water-amt'] . "'";
+					}
+					?>>
 
 					<!-- Pour Points -->
 					<div>
@@ -154,6 +181,8 @@ $errorArr = array();
 
 					<!-- <button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button>-->
 					<button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
+					<?= var_dump($errorArr)?>
+
 
 					<!-- Bootstrap Modal -->
 					<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalTitle" aria-hidden="true">
@@ -199,9 +228,9 @@ $errorArr = array();
 				<!-- Will separate this logic in another file later-->
 				<?php
 				//Change this back to "confirm_submission" later;
-				//If $error array is empty, execute PDO methods.
+				//If $errorArr array is empty, execute PDO methods.
 				//https://stackoverflow.com/questions/2216052/how-to-check-whether-an-array-is-empty-using-php
-				if(isset($_POST["submit_button"]) && empty($error)){
+				if(isset($_POST["submit_button"]) && empty($errorArr)){
 
 				//DB insert statement
 					$insertStmt = $conn->prepare("INSERT INTO recipe VALUES (DEFAULT, :recipe_name, :water_temp, :bean_amt, :grind_setting, :total_water_amt, :pour_points_water_amt, :pour_points_time, :notes)");
@@ -218,7 +247,7 @@ $errorArr = array();
 
 
 					//REMEMBER TO TURN UNCOMMENT WHEN VALIDATION IS DONE.
-					// include('lib/Recipe.php');
+					include('lib/Recipe.php');
 					$newRecipe = new Recipe(
 						$_POST['recipe-name'], 
 						$_POST['water-temp'], 

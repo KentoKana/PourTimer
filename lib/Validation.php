@@ -14,7 +14,6 @@ class Validator {
 		{
 			return true;
 		}
-
 	} 
 
 	public static function validateIntInput($input)
