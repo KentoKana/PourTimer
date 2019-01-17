@@ -1,9 +1,14 @@
 <?php 
 include('inc/database.php');
-include('inc/classes/Validation.php');
-//validator object from validation class.
-$validator = new ValidateField();
+include('lib/Validation.php');
+ini_set('display_errors',1);
+error_reporting(E_ALL);
 
+//Array for catching any errors in form;
+$errorArr = array();
+
+//validator object from validation class.
+// $validator = new ValidateField();
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +16,6 @@ $validator = new ValidateField();
 <head>
 	<title>Pour Timer | Add Recipe</title>
 	<link rel='stylesheet' href="stylesheet/css/add-recipe.css">
-	<script src="js/jquery.js"></script>
 	<?php include('inc/headEl.php')?>
 </head>
 
@@ -27,17 +31,19 @@ $validator = new ValidateField();
 
 			$newRecipeId = $_REQUEST['recipeId'];
 			$newRecipeLink = "'recipe-view.php?recipeId=$newRecipeId'";
-
 			//Display a dismissable alert box (Bootstrap) when form is successfully submitted for adding recipe.
 			//https://getbootstrap.com/docs/4.0/components/alerts/
-			if ($_REQUEST['insertStatus'] === 'success') :?>
+			if ($_REQUEST['insertStatus'] === 'success') :
+				$_POST = array();
+				?>
 				<div class="alert alert-success alert-dismissible fade show" role="alert">
 					<strong>You've successfully added your recipe!</strong> Check it out <a href= <?= $newRecipeLink; ?> >here.</a>
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-			<?php endif; ?>
+			<?php endif; 
+			?>
 			<!-- https://stackoverflow.com/questions/5666788/php-how-to-hide-display-chunks-of-html-->
 
 			<div class="jumbotron">
@@ -45,28 +51,29 @@ $validator = new ValidateField();
 					<div>
 						<label for="recipe-name"><span class="required">*</span>Recipe Name:</label>
 					</div>
-					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee" value=
-					<?php 
-					$validator->displayPostedValue($_POST['recipe-name']); 
-					?>>
+					<input type="text" id="recipe-name" class="userInput" name="recipe-name" placeholder="e.g. Ultra Coffee">
 					<div class="val-message"id="recipe-name-validation">
 						<?php
-						$validator->validateEmptyInput($_POST['recipe-name']);
+						if(Validator::validateEmptyInput($_POST['recipe-name']) == false)
+						{
+							$error['recipe-name'] = 1;
+							var_dump($error['recipe-name']);
+						}
 						?>
 					</div>
 
 					<div>
 						<label for="water-temp"><span class="required">*</span>Water Temperature (&#8451;):</label>
 					</div>
-					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93" value=
-					<?php 
-					$validator->displayPostedValue($_POST['water-temp']); 
-					?>>
+					<input type="text" id="water-temp" name="water-temp" class="userInput int" placeholder="e.g. 93">
 
 					<div class="val-message" id="water-temp-validation">
 						<?php
-						$validator->validateEmptyInput($_POST['water-temp']);
-						$validator->validateIntInput($_POST['water-temp']);
+						if(Validator::validateIntInput($_POST['water-temp']) == false)
+						{
+							$error['water-temp'] = 1;
+							var_dump($error['water-temp']);
+						}
 						?>
 					</div>
 
@@ -74,14 +81,14 @@ $validator = new ValidateField();
 					<div>
 						<label for="bean-amt"><span class="required">*</span>Bean Amount (g):</label>
 					</div>
-					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20" value=
-					<?php 
-					$validator->displayPostedValue($_POST['bean-amt']); 
-					?>>
+					<input type="text" id="bean-amt" class="userInput int" name="bean-amt" placeholder="e.g. 20">
 					<div class="val-message" id="bean-amt-validation">
 						<?php
-						$validator->validateEmptyInput($_POST['bean-amt']);
-						$validator->validateIntInput($_POST['bean-amt']);
+						if(Validator::validateIntInput($_POST['bean-amt']) == false)
+						{
+							$error['bean-amt'] = 1;
+							var_dump($error['bean-amt']);
+						}
 						?>	
 					</div>
 
@@ -103,14 +110,14 @@ $validator = new ValidateField();
 					<div>
 						<label for="total-water-amt"><span class="required">*</span>Total Water Amount (g): </label>
 					</div>
-					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300" value=
-					<?php 
-					$validator->displayPostedValue($_POST['total-water-amt']); 
-					?>>
+					<input type="text" class="userInput int" id="total-water-amt" name="total-water-amt" placeholder="e.g. 300">
 					<div class="val-message" id="total-water-amt-validation">
 						<?php
-						$validator->validateEmptyInput($_POST['total-water-amt']);
-						$validator->validateIntInput($_POST['total-water-amt']);
+						if(Validator::validateIntInput($_POST['total-water-amt']) == false)
+						{
+							$error['total-water-amt'] = 1;
+							var_dump($error['total-water-amt']);
+						}
 						?>	
 					</div>
 
@@ -191,8 +198,10 @@ $validator = new ValidateField();
 				<!-- Handle Form -->
 				<!-- Will separate this logic in another file later-->
 				<?php
-
-				if(isset($_POST["confirm_submission"])){
+				//Change this back to "confirm_submission" later;
+				//If $error array is empty, execute PDO methods.
+				//https://stackoverflow.com/questions/2216052/how-to-check-whether-an-array-is-empty-using-php
+				if(isset($_POST["submit_button"]) && empty($error)){
 
 				//DB insert statement
 					$insertStmt = $conn->prepare("INSERT INTO recipe VALUES (DEFAULT, :recipe_name, :water_temp, :bean_amt, :grind_setting, :total_water_amt, :pour_points_water_amt, :pour_points_time, :notes)");
@@ -207,7 +216,9 @@ $validator = new ValidateField();
 					$insertStmt->bindParam(':pour_points_time', $pour_points_time);
 					$insertStmt->bindParam(':notes', $notes);
 
-					include('inc/Recipe.php');
+
+					//REMEMBER TO TURN UNCOMMENT WHEN VALIDATION IS DONE.
+					// include('lib/Recipe.php');
 					$newRecipe = new Recipe(
 						$_POST['recipe-name'], 
 						$_POST['water-temp'], 
@@ -234,7 +245,7 @@ $validator = new ValidateField();
 						$insertedRecipe = $conn->lastInsertId();
                         //Get last id of the inserted data.
                         //https://www.w3schools.com/php/php_mysql_insert_lastid.asp
-						header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe"); 
+						header("Location: add-recipe.php?insertStatus=success&recipeId=$insertedRecipe");
                         //http://php.net/manual/en/function.header.php
 					} catch(PDOException $e) {
 						echo 'PDOException: ' . $e->getMessage();
@@ -254,4 +265,5 @@ $validator = new ValidateField();
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script src="js/jquery.js"></script>
 </html>
