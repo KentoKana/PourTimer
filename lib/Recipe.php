@@ -8,7 +8,6 @@ class Recipe {
 	protected $pour_points_time;
 	protected $pour_points_water_amt;
 	protected $notes;
-	protected $errEmptyField = "*This field is required.";
 
 
 	public function __construct($recipe_name, $water_temp, $bean_amt, $grind_setting, $total_water_amt, $pour_points_time, $pour_points_water_amt)

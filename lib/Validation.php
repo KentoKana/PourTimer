@@ -1,7 +1,5 @@
 <?php 
 class Validator {
-	// public $isEmpty = true;
-	// public $formValid = false;
 
 	public static function validateEmptyInput($input)
 	{
@@ -21,7 +19,7 @@ class Validator {
 		if(isset($_POST) && $input === "")
 		{
 			echo "*This field is required.";
-			return true;
+			return false;
 		} 
 		else 
 		{
@@ -37,17 +35,13 @@ class Validator {
 		}
 	} 
 
-	public function displayPostedValue($input)
+	public static function dispPostVal($input)
 	{
-		//If $this->formValid returns false at any given field, this function will return the user's input.
-		if(isset($_POST) && !$this->formValid)
+		if(isset($input))
 		{
-			echo "'$input'";
-		} 
-		else 
-		{
-			echo "";
+			echo "value='" . $input . "'";
 		}
 	}
+
 }
 ?>
