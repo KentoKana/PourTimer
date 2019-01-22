@@ -8,10 +8,6 @@ class Validator {
 			echo "*This field is required.";
 			return false;
 		} 
-		else 
-		{
-			return true;
-		}
 	} 
 
 	public static function validateIntInput($input)
@@ -28,10 +24,6 @@ class Validator {
 				echo "*Please enter a valid number.";
 				return false;
 			}
-			else 
-			{
-				return true;
-			} 
 		}
 	} 
 

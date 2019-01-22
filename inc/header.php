@@ -2,9 +2,24 @@
 	<div class="nav-wrap">
 		<a href="index.php" class='nav-logo'>POUR TIMER</a>
 		<ul class='nav-links'>
-			<li><a href="browse-recipe.php">BROWSE RECIPES</a></li>
-			<li>TIMER</li>
-			<li><a href="add-recipe.php">ADD RECIPE</a></li>
+			<?php
+			$navLinkArray = [
+				"BROWSE RECIPES" => "browse-recipe.php",
+				"TIMER" => "timer.php",
+				"ADD RECIPE" => "add-recipe.php",
+				"CONTACT US" => "contact.php",
+				"CAREERS" => "careers.php"
+			];
+			function displayNav($array){
+				foreach($array as $label=>$link)
+				{
+					echo "<li><a href='$link'> $label</a></li>";
+				}
+			}
+
+			displayNav($navLinkArray);
+
+			?>
 		</ul>
 	</div>
 </nav>

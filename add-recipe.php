@@ -1,8 +1,8 @@
 <?php 
 include('inc/database.php');
 include('lib/Validation.php');
-ini_set('display_errors',1);
-error_reporting(E_ALL);
+// ini_set('display_errors',1);
+// error_reporting(E_ALL);
 
 //REMEMBER TO TURN UNCOMMENT WHEN VALIDATION IS DONE.
 require('lib/Recipe.php');
@@ -122,10 +122,20 @@ if(isset($_POST['submit_button']))
 					</div>
 					<select id="grind-setting" class="userInput"  name="grind-setting">
 						<option value="-1" selected disabled>Select Grind Setting:</option>
-						<option value="Turkish Coffee (Extra-Fine)">Turkish Coffee (Extra-Fine)</option>
-						<option value="Espresso (Fine)">Espresso (Fine)</option>
-						<option value="Filter (Medium)">Filter (Medium)</option>
-						<option value="French Press (Coarse)">French Press (Coarse)</option>
+						<?php
+						$grind_setting_options = [
+							"Turkish Coffee (Extra-Fine)",
+							"Espresso (Fine)",
+							"Filter (Meidum)",
+							"French Press (Coarse)"
+						];
+
+						foreach($grind_setting_options as $option)
+						{
+							echo "<option value='$option'> $option </option>";
+						}
+
+						?>
 					</select>
 					<div class="val-message" id="grind-setting-validation">
 						<?php
@@ -180,8 +190,8 @@ if(isset($_POST['submit_button']))
 
 					</div>
 
-					<!-- <button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button>-->
-					<button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
+					<!-- <button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button> -->
+					 <button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
 					<?php if(isset($errorArr)): var_dump($errorArr); endif ?>
 
 

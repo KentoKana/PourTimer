@@ -66,6 +66,10 @@
 						<button class="button __button" id="reset">Reset</button>
 					</div>
 				</div>
+				<div class="pourTimeDisplay">
+					<span class="pourTimeDisplay__times"></span>
+					
+				</div>
 			</div>
 		</div>
 	</main>
