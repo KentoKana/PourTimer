@@ -4,7 +4,7 @@
 		Pour Timer &copy; 
 		<?php 
 		echo date("Y"); 
-		displayNav($navLinkArray);
+		echo displayNav($navLinkArray);
 		?>
 	</div>
 </footer>

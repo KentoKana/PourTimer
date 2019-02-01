@@ -1,12 +1,17 @@
 <?php 
+//Database Object
 include('inc/database.php');
+//Classes defined in Validation.php
 include('lib/Validation.php');
-// ini_set('display_errors',1);
-// error_reporting(E_ALL);
-
-//REMEMBER TO TURN UNCOMMENT WHEN VALIDATION IS DONE.
 require('lib/Recipe.php');
 
+//Functions defined in func.php
+include('functions/func.php');
+ini_set('display_errors',1);
+error_reporting(E_ALL);
+
+
+//Get recipe via getter from Recipe class.
 if(isset($_POST['submit_button']))
 {
 	$newRecipe = new Recipe(
@@ -123,6 +128,7 @@ if(isset($_POST['submit_button']))
 					<select id="grind-setting" class="userInput"  name="grind-setting">
 						<option value="-1" selected disabled>Select Grind Setting:</option>
 						<?php
+
 						$grind_setting_options = [
 							"Turkish Coffee (Extra-Fine)",
 							"Espresso (Fine)",
@@ -130,10 +136,7 @@ if(isset($_POST['submit_button']))
 							"French Press (Coarse)"
 						];
 
-						foreach($grind_setting_options as $option)
-						{
-							echo "<option value='$option'> $option </option>";
-						}
+						echo dropDownMenu($grind_setting_options);
 
 						?>
 					</select>
@@ -191,7 +194,7 @@ if(isset($_POST['submit_button']))
 					</div>
 
 					<!-- <button type="button" id="submitButton" class='button' name="submit_button">Save Recipe</button> -->
-					 <button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
+					<button type="submit" id="submitButton" class='button' name="submit_button">Save Recipe</button>
 					<?php if(isset($errorArr)): var_dump($errorArr); endif ?>
 
 
