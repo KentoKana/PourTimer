@@ -1,3 +1,8 @@
+<?
+//Reference functions from func.php
+include('functions/func.php');
+?>
+
 <nav>
 	<div class="nav-wrap">
 		<a href="index.php" class='nav-logo'>POUR TIMER</a>

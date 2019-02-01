@@ -5,8 +5,6 @@ include('inc/database.php');
 include('lib/Validation.php');
 require('lib/Recipe.php');
 
-//Functions defined in func.php
-include('functions/func.php');
 ini_set('display_errors',1);
 error_reporting(E_ALL);
 
